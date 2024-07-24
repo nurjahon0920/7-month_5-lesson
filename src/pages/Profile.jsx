@@ -9,6 +9,8 @@ const Profile = () => {
       <Dashboard />
       <div
         style={{
+          left: "300px",
+          position: "absolute",
           paddingTop: "100px",
           display: "flex",
           flexDirection: "column",

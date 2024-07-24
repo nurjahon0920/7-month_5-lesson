@@ -14,14 +14,14 @@ export const AuthProvider = ({ children }) => {
       setUsername2({ username });
       setPassword2({ password });
       setUser({ username });
-      navigate("/dashboard");
+      navigate("/teacher");
     } else {
       alert("Login yoki parol noto'g'ri!");
     }
   };
 
   const logout = () => {
-    // setUser(null);
+    setUser(null);
     setUsername2(null);
     setPassword2(null);
     navigate("/");

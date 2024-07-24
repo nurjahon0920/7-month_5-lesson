@@ -16,15 +16,15 @@ const App = () => {
         <AuthProvider>
           <Routes>
             <Route
-              path="/dashboard"
+              path="/teacher"
               element={
                 <PrivateRoute>
-                  <Dashboard />
+                  <Teacher />
                 </PrivateRoute>
               }
             />
             <Route path="/" element={<Login />} />
-            <Route path="/teacher" element={<Teacher />} />
+            {/* <Route path="/teacher" element={<Teacher />} /> */}
             <Route path="/student" element={<Student />} />
             <Route
               path="/profile"
