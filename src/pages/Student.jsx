@@ -5,6 +5,7 @@ import { Button, Flex, Input, Modal, Table, message } from "antd";
 
 const Teacher = () => {
   const [items, setItems] = useState([]);
+  const [search, setSearch] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [group, setGroup] = useState("");
@@ -22,11 +23,22 @@ const Teacher = () => {
       });
   }, []);
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value.toLowerCase());
+  };
+
+  const filteredData = items.filter((item) => {
+    return (
+      item.firstName.toLowerCase().includes(search) ||
+      item.lastName.toLowerCase().includes(search) ||
+      item.group.toLowerCase().includes(search)
+    );
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (firstName && lastName && group) {
       if (editItem) {
-        // Update existing item
         axios
           .put(`http://localhost:3000/students/${editItem.id}`, {
             firstName,
@@ -165,12 +177,19 @@ const Teacher = () => {
           gap: "15px",
         }}>
         <Flex style={{ gap: "10px" }}>
-          <Input.Search placeholder="Search" allowClear />
+          <Input.Search
+            placeholder="Search"
+            allowClear
+            onChange={handleSearch}
+          />
           <Button onClick={showModal} type="primary" sx={{ height: "53px" }}>
             Add Item
           </Button>
         </Flex>
-        <Table dataSource={items} columns={columns} className="Table"></Table>
+        <Table
+          dataSource={filteredData}
+          columns={columns}
+          className="Table"></Table>
         <Modal
           title={editItem ? "Edit Teacher" : "Add Teacher"}
           open={isModalOpen}
@@ -202,7 +221,7 @@ const Teacher = () => {
               maxLength={20}
               type="text"
               name="group"
-              placeholder="group"
+              placeholder="Group"
               value={group}
               onChange={(e) => setGroup(e.target.value)}
               required

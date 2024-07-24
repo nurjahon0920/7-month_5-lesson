@@ -14,7 +14,7 @@ import PeopleIcon from "@mui/icons-material/People";
 
 const { Header, Sider } = Layout;
 
-const count = 12;
+let count = 1;
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -23,6 +23,8 @@ const Dashboard = () => {
 
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
+    console.log(collapsed);
+    console.log(setCollapsed);
   };
 
   return (

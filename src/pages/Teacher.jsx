@@ -164,9 +164,12 @@ const Teacher = () => {
           fontSize: "22px",
           gap: "15px",
         }}>
-        <Button onClick={showModal} type="primary" sx={{ height: "53px" }}>
-          Add Item
-        </Button>
+        <Flex style={{ gap: "10px" }}>
+          <Input.Search placeholder="Search" allowClear />
+          <Button onClick={showModal} type="primary" sx={{ height: "53px" }}>
+            Add Item
+          </Button>
+        </Flex>
         <Table dataSource={items} columns={columns} className="Table"></Table>
         <Modal
           title={editItem ? "Edit Teacher" : "Add Teacher"}
